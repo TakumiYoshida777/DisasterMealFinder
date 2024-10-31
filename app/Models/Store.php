@@ -30,4 +30,9 @@ class Store extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function menus()
+    {
+        return $this->hasMany(Menu::class, 'stores_id');
+    }
 }
