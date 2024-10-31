@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#Logo img {
+    width: 88px;
+    height: 88px;
+    object-fit: cover;
+    cursor: pointer;
+    /* TODO:余白を無したい */
+}
