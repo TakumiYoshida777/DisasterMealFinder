@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('allergies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('menus_id')->constrained()->onDelete('cascade')->comment('メニューID');
+            $table->foreignId('menu_id')->constrained()->onDelete('cascade')->comment('メニューID'); // 修正箇所
             $table->string('name')->comment('アレルギー源');
             $table->timestamps();
         });

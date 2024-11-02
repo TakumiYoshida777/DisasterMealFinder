@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('stores_id')->nullable()->constrained('menus')->onDelete('cascade')->comment('店舗ID');
+            $table->foreignId('store_id')->nullable()->constrained()->onDelete('cascade')->comment('店舗ID');
             $table->string('name')->comment('メニュー名');
             $table->string('menu_image')->nullable()->comment('メニュー画像');
             $table->integer('memo')->nullable()->comment('備考');
