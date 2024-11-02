@@ -1,0 +1,15 @@
+#Sidebar {
+    @media screen and (max-width: 900px) {
+        .hamburger-menu-button {
+            margin: 0;
+            padding: 0;
+        }
+
+        .hamburger-menu-icon {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(50%, 50%);
+        }
+    }
+}
