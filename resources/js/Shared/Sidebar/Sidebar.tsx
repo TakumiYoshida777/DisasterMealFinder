@@ -1,26 +1,27 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
-import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
-
-import "./css/Sidebar.css";
 import { Link, usePage } from "@inertiajs/react";
 import ApplicationLogo from "../../Components/ApplicationLogo";
 import AppName from "../AppName/AppName";
 import Dropdown from "../../Components/Dropdown";
-
+import {
+    AppBar,
+    Box,
+    CssBaseline,
+    Divider,
+    Drawer,
+    IconButton,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    Toolbar,
+} from "@mui/material";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
+import MenuIcon from "@mui/icons-material/Menu";
+import { CustomPageProps, User } from "../types";
+import { route } from "ziggy-js";
 const drawerWidth = 240;
 
 interface Props {
@@ -33,7 +34,8 @@ export default function Sidebar(props: Props) {
     const [isClosing, setIsClosing] = React.useState(false);
 
     // usePageフックを使用してユーザー情報を取得
-    const user = usePage().props.auth.user;
+    const { auth }: CustomPageProps = usePage<CustomPageProps>().props;
+    const user: User = auth.user;
 
     const handleDrawerClose = () => {
         setIsClosing(true);
@@ -61,22 +63,27 @@ export default function Sidebar(props: Props) {
 
             <Divider />
             <List>
-                {["Inbox", "Starred", "Send email", "Drafts"].map(
-                    (text, index) => (
-                        <ListItem key={text} disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    {index % 2 === 0 ? (
-                                        <InboxIcon />
-                                    ) : (
-                                        <MailIcon />
-                                    )}
-                                </ListItemIcon>
-                                <ListItemText primary={text} />
-                            </ListItemButton>
-                        </ListItem>
-                    )
-                )}
+                <ListItem disablePadding>
+                    <ListItemButton
+                        component={Link}
+                        href={route("store.index")}
+                    >
+                        <ListItemIcon>
+                            <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="店舗" />
+                    </ListItemButton>
+                </ListItem>
+                {["Starred", "Send email", "Drafts"].map((text, index) => (
+                    <ListItem key={text} disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                            </ListItemIcon>
+                            <ListItemText primary={text} />
+                        </ListItemButton>
+                    </ListItem>
+                ))}
             </List>
             <Divider />
             <List>
@@ -109,7 +116,7 @@ export default function Sidebar(props: Props) {
                             >
                                 <path
                                     fillRule="evenodd"
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                     clipRule="evenodd"
                                 />
                             </svg>

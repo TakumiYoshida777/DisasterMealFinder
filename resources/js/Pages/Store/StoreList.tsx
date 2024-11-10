@@ -1,8 +1,7 @@
 import React from "react";
 
-
 const StoreList = () => {
-    return <div></div>;
+    return <div>StoreList</div>;
 };
 
 export default StoreList;
