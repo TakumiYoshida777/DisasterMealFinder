@@ -174,7 +174,7 @@ export default function AuthenticatedLayout({ header, children }) {
                     </header>
                 )}
 
-                <main>{children}</main>
+                <main className="p-4">{children}</main>
             </div>
         </div>
     );

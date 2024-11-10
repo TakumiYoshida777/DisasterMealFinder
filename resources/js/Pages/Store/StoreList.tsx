@@ -1,7 +1,12 @@
+import TableMui from "@/Components/TableMui";
 import React from "react";
 
 const StoreList = () => {
-    return <div>StoreList</div>;
+    return (
+        <div>
+            <TableMui />
+        </div>
+    );
 };
 
 export default StoreList;
