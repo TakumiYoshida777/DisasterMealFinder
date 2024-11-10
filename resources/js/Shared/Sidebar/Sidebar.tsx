@@ -34,6 +34,7 @@ export default function Sidebar(props: Props) {
 
     // usePageフックを使用してユーザー情報を取得
     const user = usePage().props.auth.user;
+    console.log(user);
 
     const handleDrawerClose = () => {
         setIsClosing(true);
