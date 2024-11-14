@@ -35,6 +35,9 @@ type Props = {
 };
 
 export default function TableMui({ rows }: Props) {
+    if (rows.length === 0) {
+        console.error("rows is empty");
+    }
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
