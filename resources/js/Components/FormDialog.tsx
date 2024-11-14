@@ -1,13 +1,34 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
+import TextField, { TextFieldVariants } from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+import FormHelperText from "@mui/material/FormHelperText";
 
-export default function FormDialog() {
+export type FormList = {
+    required?: boolean;
+    autoFocus?: boolean;
+    margin?: "dense" | "none" | "normal";
+    id: number;
+    name: string;
+    label: string;
+    type: string;
+    fullWidth?: boolean;
+    variant?: TextFieldVariants;
+};
+
+type Props = {
+    title: string;
+    formList: FormList[];
+    buttonLabel: string;
+};
+
+export default function FormDialog({ buttonLabel, title, formList }: Props) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -21,7 +42,7 @@ export default function FormDialog() {
     return (
         <React.Fragment>
             <Button variant="outlined" onClick={handleClickOpen}>
-                店舗登録 | Register Store
+                {buttonLabel}
             </Button>
             <Dialog
                 open={open}
@@ -40,7 +61,7 @@ export default function FormDialog() {
                     },
                 }}
             >
-                <DialogTitle>店舗登録 | Register Store</DialogTitle>
+                <DialogTitle>{title}</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         登録する店舗情報を入力してください
@@ -48,61 +69,20 @@ export default function FormDialog() {
                         Please enter the store information to register
                     </DialogContentText>
                     <div className="px-3">
-                        <TextField
-                            autoFocus
-                            required
-                            margin="dense"
-                            id="name"
-                            name="name"
-                            label="店舗名| Store Name"
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            required
-                            margin="dense"
-                            id="email"
-                            name="email"
-                            label="店舗のEメールアドレス|Stores Email Address"
-                            type="email"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            required
-                            margin="dense"
-                            id="tel"
-                            name="email"
-                            label="店舗の電話番号| Store Phone Number"
-                            type="tel"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            required
-                            margin="dense"
-                            id="postal_code"
-                            name="postal_code"
-                            label="店舗の郵便番号| Store Postal Code"
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            required
-                            margin="dense"
-                            id="address"
-                            name="address"
-                            label="店舗の住所| Store Address"
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
+                        {formList.map((form) => (
+                            <TextField
+                                key={form.id}
+                                required={form.required ?? true}
+                                autoFocus={form.autoFocus ?? true}
+                                margin={form.margin ?? "dense"}
+                                id={form.name}
+                                name={form.name}
+                                label={form.label}
+                                type={form.type ?? "text"}
+                                fullWidth={form.fullWidth ?? true}
+                                variant={form.variant ?? "standard"}
+                            />
+                        ))}
                     </div>
                 </DialogContent>
                 <DialogActions>
