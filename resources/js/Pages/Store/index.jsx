@@ -15,7 +15,6 @@ const Store = () => {
         >
             <div className="mb-4">
                 <FormDialog
-                    className="mb-4"
                     title="店舗情報|Store Information"
                     buttonLabel="店舗登録 | Register Store"
                     formList={[
