@@ -1,7 +1,7 @@
 export interface StoreData {
-    id: number;
-    user_id: number;
-    category_id: number;
+    id: number | string;
+    user_id: number | string;
+    category_id: number | string;
     name: string;
     first_postal_code: string;
     second_postal_code: string;

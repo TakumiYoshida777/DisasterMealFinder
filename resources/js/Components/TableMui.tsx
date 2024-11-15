@@ -29,25 +29,34 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 type Props = {
+    thead?: string[];
     rows: {
         [key: string]: string | number;
     }[];
 };
 
-export default function TableMui({ rows }: Props) {
+export default function TableMui({ thead, rows }: Props) {
     if (rows.length === 0) {
         console.error("rows is empty");
     }
+    console.log(thead);
+
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead>
                     <TableRow>
-                        {Object.keys(rows[0]).map((key) => (
-                            <StyledTableCell key={key} align="left">
-                                {key}
-                            </StyledTableCell>
-                        ))}
+                        {thead
+                            ? thead.map((value, index) => (
+                                  <StyledTableCell key={index} align="left">
+                                      {value}
+                                  </StyledTableCell>
+                              ))
+                            : Object.keys(rows[0]).map((key) => (
+                                  <StyledTableCell key={key} align="left">
+                                      {key}
+                                  </StyledTableCell>
+                              ))}
                     </TableRow>
                 </TableHead>
                 <TableBody>

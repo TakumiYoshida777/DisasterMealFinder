@@ -3,35 +3,24 @@ import { StoreListProps } from "./types";
 
 type Props = {
     data: StoreListProps[];
+    thead?: string[];
 };
 
-const StoreList = ({ data = [] }: Props) => {
+const StoreList = ({ data = [], thead }: Props) => {
+    console.log(data, "datadata");
+
     if (data.length === 0) {
-        return (
-            <div>
-                <TableMui
-                    rows={[
-                        {
-                            No: 0,
-                            カテゴリー: "No data",
-                            店名: "No data",
-                            郵便番号: "No data",
-                            都道府県: "No data",
-                            電話番号: "No data",
-                            メールアドレス: "No data",
-                            作成日時: "No data",
-                            更新日時: "No data",
-                            "": "",
-                        },
-                    ]} // データがない場合は空のデータを表示
-                />
-            </div>
-        );
+        data.forEach((item) => {
+            //valueを全て空にする
+            Object.keys(item).forEach((key) => {
+                item[key] = "";
+            });
+        });
     }
 
     return (
         <div>
-            <TableMui rows={data} />
+            <TableMui rows={data} thead={thead} />
         </div>
     );
 };

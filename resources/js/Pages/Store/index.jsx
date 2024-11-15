@@ -5,6 +5,34 @@ import { Button } from "@mui/material";
 import FormDialog from "@/Components/FormDialog";
 
 const Store = () => {
+    const storeData = [
+        {
+            id: 1,
+            name: "Store 1",
+            email: "test1@test.com",
+            tel: "090-1234-5678",
+            postal_code: "123-4567",
+            address: "Tokyo",
+        },
+        {
+            id: 2,
+            name: "Store 2",
+            email: "test2@test.com",
+            tel: "090-1234-5678",
+            postal_code: "123-4567",
+            address: "Tokyo",
+        },
+    ];
+
+    const thead = [
+        "No",
+        "店舗名",
+        "メールアドレス",
+        "電話番号",
+        "郵便番号",
+        "住所",
+        "",
+    ];
     return (
         <AuthenticatedLayout
             header={
@@ -52,7 +80,7 @@ const Store = () => {
                 />
             </div>
 
-            <StoreList />
+            <StoreList thead={thead} data={storeData} />
         </AuthenticatedLayout>
     );
 };
