@@ -31,7 +31,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 type Props = {
     thead?: string[];
     rows: {
-        [key: string]: string | number;
+        [key: string]: string | number | React.ReactNode;
     }[];
 };
 
@@ -59,8 +59,8 @@ export default function TableMui({ thead, rows }: Props) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
-                        <StyledTableRow key={row.name}>
+                    {rows.map((row, rowIndex) => (
+                        <StyledTableRow key={rowIndex}>
                             {Object.values(row).map((value, index) => (
                                 <StyledTableCell key={index} align="left">
                                     {value}

@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface StoreData {
     id: number | string;
     user_id: number | string;
@@ -14,6 +16,7 @@ export interface StoreData {
     description: string;
     created_at: string;
     updated_at: string;
+    button?: React.ReactNode;
 }
 
 export interface StoreListProps {
@@ -26,5 +29,5 @@ export interface StoreListProps {
     メールアドレス: string;
     作成日時: string;
     更新日時: string;
-    [key: string]: string | number; // インデックスシグネチャの追加
+    [key: string]: string | number | React.ReactNode; // インデックスシグネチャの追加
 }
