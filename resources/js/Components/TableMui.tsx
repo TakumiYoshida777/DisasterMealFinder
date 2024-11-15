@@ -39,7 +39,6 @@ export default function TableMui({ thead, rows }: Props) {
     if (rows.length === 0) {
         console.error("rows is empty");
     }
-    console.log(thead);
 
     return (
         <TableContainer component={Paper}>
