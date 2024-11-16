@@ -10,7 +10,7 @@ export default function ApplicationLogo(props) {
         <img
             src="/img/logo2.png"
             alt="ApplicationLogo"
-            srcset=""
+            srcSet=""
             className=" cursor-pointer w-8 py-1 m-0"
         />
         // <svg
