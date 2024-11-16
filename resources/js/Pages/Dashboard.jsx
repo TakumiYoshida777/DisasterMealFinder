@@ -3,8 +3,25 @@ import { Head } from "@inertiajs/react";
 import ModalLayout from "../Layouts/ModalLayout";
 import FormDialog from "../Components/FormDialog";
 import Modal from "../Components/Modal";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Dashboard() {
+    //TODO: sample code for fetching data
+    const { data, isLoading } = useQuery({
+        queryKey: "dashboard",
+        queryFn: async () => {
+            const response = await fetch(
+                "https://jsonplaceholder.typicode.com/posts"
+            );
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.json();
+        },
+    });
+
+    console.log(data, isLoading, "data", "isLoading");
+
     return (
         <AuthenticatedLayout
             header={
