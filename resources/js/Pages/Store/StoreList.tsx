@@ -22,7 +22,16 @@ const StoreList = ({ data = [], thead }: Props) => {
         //dataが空でない場合
         data.forEach((item, index) => {
             // 最後にボタンを挿入
-            item["button"] = <Button variant="contained">詳細</Button>;
+            item["button"] = (
+                <Button
+                    variant="contained"
+                    onClick={() => {
+                        console.log("詳細ボタンがクリックされました", item);
+                    }}
+                >
+                    詳細
+                </Button>
+            );
         });
     }
 
