@@ -103,13 +103,6 @@ export default function FormDialog({
                                     error={!!errors[form.name]}
                                     helperText={errors[form.name]?.message}
                                 />
-                                <InputError
-                                    error={errors[form.name as keyof FormData]}
-                                    message={
-                                        errors[form.name as keyof FormData]
-                                            ?.message
-                                    }
-                                />
                             </React.Fragment>
                         ))}
                     </div>
