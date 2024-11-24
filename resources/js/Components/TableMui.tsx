@@ -37,7 +37,9 @@ type Props = {
 
 export default function TableMui({ thead, rows }: Props) {
     if (rows.length === 0) {
-        console.error("rows is empty");
+        rows.push({ message: "データがありません" });
+        // データがない場合ボタンは表示しない
+        thead = undefined;
     }
 
     return (
