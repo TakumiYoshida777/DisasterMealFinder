@@ -2,9 +2,28 @@ import React from "react";
 import StoreList from "./StoreList";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import FormDialog from "@/Components/FormDialog";
+import { useQuery } from "@tanstack/react-query";
+import { route } from "ziggy-js";
+
+const fetchStore = async () => {
+    const response = await fetch(route("store.getAllStore"));
+    if (!response.ok) {
+        throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    return data;
+};
+console.log(route("store.getAllStore"), "route");
 
 const Store = () => {
     // Data fetch from API
+    const { data, isLoading, error } = useQuery({
+        queryKey: ["store"], // queryKeyを配列に変更
+        queryFn: fetchStore,
+    });
+    console.log(data, "data");
+    console.log(isLoading, "isLoading");
+    console.log(error, "error");
 
     const storeData = [
         {

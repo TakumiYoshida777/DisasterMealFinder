@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StoreController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,8 +25,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/store', function () {
-    return Inertia::render('Store/index');
-})->name('store.index');
+// 店舗一覧画面
+Route::get('/store', [StoreController::class, 'index'])->name('store.index');
+
+// 店舗登録画面
+Route::get('/store/store', [StoreController::class, 'store'])->name('store.store');
+
+
+
 
 require __DIR__ . '/auth.php';

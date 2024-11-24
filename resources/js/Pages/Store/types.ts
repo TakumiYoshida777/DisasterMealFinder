@@ -20,14 +20,12 @@ export interface StoreData {
 }
 
 export interface StoreListProps {
-    No: number;
-    カテゴリー: string;
-    店名: string;
-    郵便番号: string;
-    都道府県: string;
-    電話番号: string;
-    メールアドレス: string;
-    作成日時: string;
-    更新日時: string;
-    [key: string]: string | number | React.ReactNode; // インデックスシグネチャの追加
+    [key: string]: any; // インデックスシグネチャを追加
+    id: number | string;
+    name: string;
+    email: string;
+    tel: string;
+    postal_code: string;
+    address: string;
+    button?: React.ReactNode;
 }

@@ -1,6 +1,6 @@
 import TableMui from "@/Components/TableMui";
-import { StoreListProps } from "./types";
 import { Button } from "@mui/material";
+import { StoreListProps } from "./types";
 
 type Props = {
     data: StoreListProps[];
