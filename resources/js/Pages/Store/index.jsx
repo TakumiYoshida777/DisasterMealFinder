@@ -1,10 +1,11 @@
 import React from "react";
 import StoreList from "./StoreList";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Button } from "@mui/material";
 import FormDialog from "@/Components/FormDialog";
 
 const Store = () => {
+    // Data fetch from API
+
     const storeData = [
         {
             id: 1,
@@ -45,6 +46,7 @@ const Store = () => {
                 <FormDialog
                     title="店舗情報|Store Information"
                     buttonLabel="店舗登録 | Register Store"
+                    message="店舗情報を入力してください | Please enter store information"
                     formList={[
                         {
                             id: "name",
