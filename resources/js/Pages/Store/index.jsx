@@ -45,6 +45,7 @@ const Store = () => {
                 <FormDialog
                     title="店舗情報|Store Information"
                     buttonLabel="店舗登録 | Register Store"
+                    message="店舗情報を入力してください | Please enter store information"
                     formList={[
                         {
                             id: "name",
