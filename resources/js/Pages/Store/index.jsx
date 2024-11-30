@@ -28,7 +28,7 @@ const Store = () => {
         queryFn: fetchStore,
     });
 
-    const storeData = data?.data;
+    const [storeData, setStoreData] = React.useState(data.data);
 
     const thead = [
         "No",
@@ -105,6 +105,7 @@ const Store = () => {
                         // },
                     ]}
                     onSuccess={refetch}
+                    setStoreData={setStoreData}
                 />
             </div>
 

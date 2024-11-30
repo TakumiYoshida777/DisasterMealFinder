@@ -32,6 +32,7 @@ interface Props {
     }>;
     message: string;
     onSuccess: () => void;
+    setStoreData: (data: any) => void;
 }
 
 const formSchema = z.object({
@@ -61,6 +62,7 @@ export default function FormDialog({
     formList,
     message,
     onSuccess,
+    setStoreData,
 }: Props) {
     // user_idはログインユーザーのIDを取得する
     const { auth }: CustomPageProps = usePage<CustomPageProps>().props;
@@ -87,7 +89,7 @@ export default function FormDialog({
     });
 
     // フォーム送信時の処理
-    const onSubmit = (data: FormData) => {
+    const onSubmit = async (data: FormData) => {
         console.log(data, "submit data");
 
         const submitData = {
@@ -102,18 +104,20 @@ export default function FormDialog({
 
         // ここでAPIリクエストを送信する
         try {
-            const response = fetch(route("store.store"), {
+            const response = await fetch(route("store.store"), {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(submitData),
             });
-            console.log(response, "response");
+
+            const resData = await response.json();
 
             // 送信成功
             console.log("送信成功");
             onSuccess();
+            setStoreData(resData.data.original.data);
         } catch (error) {
             // 送信失敗
             console.error("送信失敗", error);

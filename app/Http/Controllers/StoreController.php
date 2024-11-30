@@ -52,7 +52,7 @@ class StoreController extends Controller
 
 
         // データの保存
-        Store::create(
+        $res = Store::create(
             [
                 'user_id' => $request->user_id,
                 'category_id' => 1, //TODO: カテゴリーIDは仮で1を設定
@@ -65,6 +65,8 @@ class StoreController extends Controller
             ]
         );
 
-        return redirect()->route('store.index');
+        $stores = $this->getAllStore();
+
+        return response()->json(['data' => $stores, 'status' => 200]);
     }
 }
