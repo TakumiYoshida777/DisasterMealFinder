@@ -31,8 +31,6 @@ class StoreController extends Controller
             ->select('id', 'name', 'email', 'phone', 'first_postal_code', 'second_postal_code', 'address')
             ->get();
 
-
-
         return response()->json(['data' => $stores, 'status' => 200]);
     }
 
