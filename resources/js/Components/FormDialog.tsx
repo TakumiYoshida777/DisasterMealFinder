@@ -31,6 +31,7 @@ interface Props {
         variant?: "standard" | "outlined" | "filled";
     }>;
     message: string;
+    onSuccess: () => void;
 }
 
 const formSchema = z.object({
@@ -40,8 +41,16 @@ const formSchema = z.object({
         .string()
         .regex(/^\d+$/, "数字のみ入力してください")
         .min(1, "電話番号は必須です"),
-    first_postal_code: z.string().min(1, "郵便番号は必須です"),
-    second_postal_code: z.string().min(1, "郵便番号は必須です"),
+    first_postal_code: z
+        .string()
+        .regex(/^\d+$/, "数字のみ入力してください")
+        .min(1, "郵便番号は必須です")
+        .max(4, "4桁まで入力してください"),
+    second_postal_code: z
+        .string()
+        .regex(/^\d+$/, "数字のみ入力してください")
+        .min(1, "郵便番号は必須です")
+        .max(4, "4桁まで入力してください"),
     address: z.string().min(1, "住所は必須です"),
 });
 type FormData = z.infer<typeof formSchema>;
@@ -51,6 +60,7 @@ export default function FormDialog({
     title,
     formList,
     message,
+    onSuccess,
 }: Props) {
     // user_idはログインユーザーのIDを取得する
     const { auth }: CustomPageProps = usePage<CustomPageProps>().props;
@@ -76,6 +86,7 @@ export default function FormDialog({
         mode: "onChange",
     });
 
+    // フォーム送信時の処理
     const onSubmit = (data: FormData) => {
         console.log(data, "submit data");
 
@@ -98,8 +109,11 @@ export default function FormDialog({
                 },
                 body: JSON.stringify(submitData),
             });
+            console.log(response, "response");
+
             // 送信成功
             console.log("送信成功");
+            onSuccess();
         } catch (error) {
             // 送信失敗
             console.error("送信失敗", error);

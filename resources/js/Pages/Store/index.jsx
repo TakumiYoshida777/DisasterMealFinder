@@ -2,7 +2,7 @@ import React from "react";
 import StoreList from "./StoreList";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import FormDialog from "@/Components/FormDialog";
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { route } from "ziggy-js";
 import { usePage } from "@inertiajs/react";
 
@@ -23,16 +23,12 @@ const Store = () => {
     console.log(user, "user");
 
     // Data fetch from API
-    const { data, isLoading, error } = useQuery({
+    const { data, refetch, isLoading, error } = useSuspenseQuery({
         queryKey: ["store"], // queryKeyを配列に変更
         queryFn: fetchStore,
     });
-    console.log(data, "data");
-    console.log(isLoading, "isLoading");
-    console.log(error, "error");
 
     const storeData = data?.data;
-    console.log(storeData, "storeData");
 
     const thead = [
         "No",
@@ -108,6 +104,7 @@ const Store = () => {
                         //     name: "category",
                         // },
                     ]}
+                    onSuccess={refetch}
                 />
             </div>
 
