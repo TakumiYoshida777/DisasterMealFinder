@@ -4,6 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import FormDialog from "@/Components/FormDialog";
 import { useQuery } from "@tanstack/react-query";
 import { route } from "ziggy-js";
+import { usePage } from "@inertiajs/react";
 
 const fetchStore = async () => {
     const response = await fetch(route("store.getAllStore"));
@@ -16,6 +17,11 @@ const fetchStore = async () => {
 console.log(route("store.getAllStore"), "route");
 
 const Store = () => {
+    // usePageフックを使用してユーザー情報を取得
+    const { auth } = usePage().props;
+    const user = auth.user;
+    console.log(user, "user");
+
     // Data fetch from API
     const { data, isLoading, error } = useQuery({
         queryKey: ["store"], // queryKeyを配列に変更
@@ -30,7 +36,7 @@ const Store = () => {
     //         id: 1,
     //         name: "Store 1",
     //         email: "test1@test.com",
-    //         tel: "090-1234-5678",
+    //         phone: "090-1234-5678",
     //         postal_code: "123-4567",
     //         address: "Tokyo",
     //     },
@@ -38,7 +44,7 @@ const Store = () => {
     //         id: 2,
     //         name: "Store 2",
     //         email: "test2@test.com",
-    //         tel: "090-1234-5678",
+    //         phone: "090-1234-5678",
     //         postal_code: "123-4567",
     //         address: "Tokyo",
     //     },
@@ -56,6 +62,7 @@ const Store = () => {
         "住所",
         "",
     ];
+
     return (
         <AuthenticatedLayout
             header={
@@ -69,6 +76,12 @@ const Store = () => {
                     title="店舗情報|Store Information"
                     buttonLabel="店舗登録 | Register Store"
                     message="店舗情報を入力してください | Please enter store information"
+                    dropDownList={[
+                        { value: "1", label: "飲食店| Restaurant" },
+                        { value: "2", label: "カフェ| Cafe" },
+                        { value: "3", label: "居酒屋| Izakaya" },
+                        { value: "4", label: "その他| Others" },
+                    ]}
                     formList={[
                         {
                             id: "name",
@@ -83,16 +96,22 @@ const Store = () => {
                             name: "email",
                         },
                         {
-                            id: "tel",
-                            type: "tel",
+                            id: "phone",
+                            type: "phone",
                             label: "店舗の電話番号| Store Phone Number",
-                            name: "tel",
+                            name: "phone",
                         },
                         {
-                            id: "postal_code",
+                            id: "first_postal_code",
                             type: "text",
-                            label: "店舗の郵便番号| Store Postal Code",
-                            name: "postal_code",
+                            label: "店舗の郵便番号(3桁)| Store Postal Code",
+                            name: "first_postal_code",
+                        },
+                        {
+                            id: "second_postal_code",
+                            type: "text",
+                            label: "店舗の郵便番号(4桁)| Store Postal Code",
+                            name: "second_postal_code",
                         },
                         {
                             id: "address",
@@ -100,6 +119,12 @@ const Store = () => {
                             label: "店舗の住所| Store Address",
                             name: "address",
                         },
+                        // {
+                        //     id: "category",
+                        //     type: "select",
+                        //     label: "カテゴリー| Store Category",
+                        //     name: "category",
+                        // },
                     ]}
                 />
             </div>

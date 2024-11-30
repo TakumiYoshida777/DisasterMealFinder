@@ -28,8 +28,6 @@ Route::middleware('auth')->group(function () {
 // 店舗一覧画面
 Route::get('/store', [StoreController::class, 'index'])->name('store.index');
 
-// 店舗登録画面
-Route::get('/store/store', [StoreController::class, 'store'])->name('store.store');
 
 
 

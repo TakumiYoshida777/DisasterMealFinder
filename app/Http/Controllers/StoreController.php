@@ -40,6 +40,7 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
+        Log::debug(['store request' => $request->all()]);
         // バリデーション
         // $request->validate([
         //     'name' => 'required|max:255',
@@ -47,8 +48,20 @@ class StoreController extends Controller
         //     'tel' => 'required|max:255',
         // ]);
 
+
         // データの保存
-        Store::create($request->all());
+        Store::create(
+            [
+                'user_id' => $request->user_id,
+                'category_id' => 1, //TODO: カテゴリーIDは仮で1を設定
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'first_postal_code' => $request->first_postal_code,
+                'second_postal_code' => $request->second_postal_code,
+                'address' => $request->address,
+            ]
+        );
 
         return redirect()->route('store.index');
     }

@@ -29,3 +29,15 @@ export interface StoreListProps {
     address: string;
     button?: React.ReactNode;
 }
+
+export interface StoreFormProps {
+    name: string;
+    email: string;
+    tel: string;
+    postal_code: string;
+    address: string;
+    prefecture_code: string;
+    building_name?: string;
+    website?: string;
+    description: string;
+}

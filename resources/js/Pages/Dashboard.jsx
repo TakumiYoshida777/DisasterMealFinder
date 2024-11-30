@@ -1,11 +1,16 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
+import { Head, usePage } from "@inertiajs/react";
 import ModalLayout from "../Layouts/ModalLayout";
 import FormDialog from "../Components/FormDialog";
 import Modal from "../Components/Modal";
 import { useQuery } from "@tanstack/react-query";
 
 export default function Dashboard() {
+    //TODO: sample code for usePage.props
+    const { auth } = usePage().props;
+    const user = auth.user;
+    console.log(user, "user");
+
     //TODO: sample code for fetching data
     const { data, isLoading } = useQuery({
         queryKey: "dashboard",

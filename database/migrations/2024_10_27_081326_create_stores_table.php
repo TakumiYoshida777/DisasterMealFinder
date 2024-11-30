@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('name')->comment('店舗名');
             $table->string('first_postal_code')->comment('郵便番号1');
             $table->string('second_postal_code')->comment('郵便番号2');
-            $table->string('prefecture_code')->comment('都道府県コード');
+            $table->tinyInteger('prefecture_code')->nullable()->comment('都道府県コード');
             $table->string('address')->comment('住所');
             $table->string('building_name')->nullable()->comment('建物名');
             $table->string('phone')->comment('電話番号');
             $table->string('email')->comment('メールアドレス');
             $table->string('website')->nullable()->comment('ホームページ');
-            $table->text('description')->comment('説明');
+            $table->text('description')->nullable()->comment('説明');
             $table->timestamps();
         });
     }
