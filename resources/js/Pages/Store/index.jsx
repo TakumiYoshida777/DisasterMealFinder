@@ -31,25 +31,6 @@ const Store = () => {
     console.log(isLoading, "isLoading");
     console.log(error, "error");
 
-    // const storeData = [
-    //     {
-    //         id: 1,
-    //         name: "Store 1",
-    //         email: "test1@test.com",
-    //         phone: "090-1234-5678",
-    //         postal_code: "123-4567",
-    //         address: "Tokyo",
-    //     },
-    //     {
-    //         id: 2,
-    //         name: "Store 2",
-    //         email: "test2@test.com",
-    //         phone: "090-1234-5678",
-    //         postal_code: "123-4567",
-    //         address: "Tokyo",
-    //     },
-    // ];
-
     const storeData = data?.data;
     console.log(storeData, "storeData");
 
