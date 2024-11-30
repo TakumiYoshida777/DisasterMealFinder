@@ -36,6 +36,8 @@ type Props = {
 };
 
 export default function TableMui({ thead, rows }: Props) {
+    console.log(rows, "rows");
+
     if (rows.length === 0) {
         rows.push({ message: "データがありません" });
         // データがない場合ボタンは表示しない

@@ -27,8 +27,12 @@ class StoreController extends Controller
      */
     public function getAllStore()
     {
-        Log::debug('testtesttesttesttest');
-        $stores = Store::all();
+        $stores = Store::query()
+            ->select('id', 'name', 'email', 'phone', 'first_postal_code', 'second_postal_code', 'address')
+            ->get();
+
+
+
         return response()->json(['data' => $stores, 'status' => 200]);
     }
 
